@@ -6,7 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTextField extends StatelessWidget {
   String hintText;
   bool obscureText;
-  MyTextField({Key? key, required this.hintText, required this.obscureText})
+  final TextEditingController usercontroller;
+  MyTextField(
+      {Key? key,
+      required this.hintText,
+      required this.obscureText,
+      required this.usercontroller})
       : super(key: key);
 
   @override
@@ -17,6 +22,7 @@ class MyTextField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: TextField(
+            controller: usercontroller,
             obscureText: obscureText,
             decoration: InputDecoration(
                 hintText: hintText,

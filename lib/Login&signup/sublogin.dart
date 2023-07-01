@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trn_project_2/Elements/mytextfield.dart';
@@ -15,16 +16,44 @@ class Sublogin extends StatefulWidget {
 }
 
 class _SubloginState extends State<Sublogin> {
+  final emailcontroller = TextEditingController();
+  final passcontroller = TextEditingController();
+
+  void signuserin() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(child: CircularProgressIndicator());
+      },
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailcontroller.text, password: passcontroller.text);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('user-not-found');
+      } else if (e.code == 'wrong-password') {
+        print('wrong Password');
+      }
+    }
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          MyTextField(hintText: 'Email or Username', obscureText: false),
+          MyTextField(
+            hintText: 'Email or Username',
+            obscureText: false,
+            usercontroller: emailcontroller,
+          ),
           SizedBox(height: 10),
           MyTextField(
             hintText: 'Password',
             obscureText: true,
+            usercontroller: passcontroller,
           ),
           SizedBox(height: 10),
           Container(
@@ -42,20 +71,23 @@ class _SubloginState extends State<Sublogin> {
           SizedBox(
             height: 10,
           ),
-          Container(
-              height: 54,
-              width: 293,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18.00),
-                color: Color(0xff275EEA),
-              ),
-              child: Center(
-                child: Text('Login',
-                    style: GoogleFonts.inter(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                        color: Colors.white)),
-              )),
+          GestureDetector(
+            onTap: signuserin,
+            child: Container(
+                height: 54,
+                width: 293,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18.00),
+                  color: Color(0xff275EEA),
+                ),
+                child: Center(
+                  child: Text('Login',
+                      style: GoogleFonts.inter(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: Colors.white)),
+                )),
+          ),
           SizedBox(
             height: 50,
           ),
