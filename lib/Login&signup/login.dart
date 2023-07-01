@@ -17,13 +17,38 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late PageController _pageController;
   int currentpage = 0;
-
+  int myindex = 0;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _pageController =
         PageController(initialPage: currentpage, viewportFraction: 0.99);
+  }
+
+  late Color newcolor1 = Color(0xffFEEEEE);
+  late Color newcolor2 = Colors.white;
+
+  void page0() {
+    _pageController.previousPage(
+        duration: Duration(milliseconds: 400), curve: Curves.easeIn);
+
+    setState(() {
+      newcolor1 =
+          (newcolor2 == Colors.white) ? Colors.white : Color(0xffFEEEEE);
+      newcolor2 = Colors.white;
+    });
+  }
+
+  void page1() {
+    _pageController.nextPage(
+        duration: Duration(milliseconds: 400), curve: Curves.easeIn);
+    // newcolor = (newcolor == Colors.white) ? Colors.pink : Colors.white;
+    setState(() {
+      newcolor2 =
+          (newcolor1 == Colors.white) ? Colors.white : Color(0xffFEEEEE);
+      newcolor1 = Colors.white;
+    });
   }
 
   @override
@@ -63,17 +88,26 @@ class _LoginPageState extends State<LoginPage> {
                       child: IntrinsicHeight(
                         child: Row(
                           children: [
-                            LoginButtonToggle(mytext: 'Login', index1: 0),
+                            GestureDetector(
+                              onTap: page0,
+                              child: LoginButtonToggle(
+                                mycolor: newcolor1,
+                                mytext: 'Login',
+                              ),
+                            ),
                             VerticalDivider(
-                              width: 40,
+                              width: 15,
                               thickness: 1,
                               color: Colors.black,
                               indent: 10,
                               endIndent: 10,
                             ),
-                            LoginButtonToggle(
-                              index1: 1,
-                              mytext: 'Signup',
+                            GestureDetector(
+                              onTap: page1,
+                              child: LoginButtonToggle(
+                                mycolor: newcolor2,
+                                mytext: 'Signup',
+                              ),
                             )
                           ],
                         ),

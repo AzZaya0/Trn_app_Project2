@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trn_project_2/Elements/mytextfield.dart';
+import 'package:trn_project_2/Login&signup/facebook_image.dart';
+import 'package:trn_project_2/Login&signup/github_image.dart';
+import 'package:trn_project_2/Login&signup/google_image.dart';
 
 class Sublogin extends StatefulWidget {
   Sublogin({Key? key}) : super(key: key);
@@ -17,10 +20,13 @@ class _SubloginState extends State<Sublogin> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          MyTextField(hintText: 'Email'),
+          MyTextField(hintText: 'Email or Username', obscureText: false),
           SizedBox(height: 10),
-          MyTextField(hintText: 'Password'),
-          SizedBox(height: 30),
+          MyTextField(
+            hintText: 'Password',
+            obscureText: true,
+          ),
+          SizedBox(height: 10),
           Container(
               height: 25,
               width: 293,
@@ -41,7 +47,7 @@ class _SubloginState extends State<Sublogin> {
               width: 293,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18.00),
-                color: Colors.blue,
+                color: Color(0xff275EEA),
               ),
               child: Center(
                 child: Text('Login',
@@ -49,7 +55,20 @@ class _SubloginState extends State<Sublogin> {
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                         color: Colors.white)),
-              ))
+              )),
+          SizedBox(
+            height: 50,
+          ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Google_imageLog(),
+                Facebook_imageLog(),
+                Github_imageLog()
+              ],
+            ),
+          )
         ],
       ),
     );

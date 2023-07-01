@@ -9,10 +9,11 @@ class Subsignup extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          MyTextField(hintText: 'Email'),
+          MyTextField(hintText: 'Email', obscureText: false),
           SizedBox(height: 10),
           MyTextField(
             hintText: 'Password',
+            obscureText: true,
           ),
         ],
       ),
