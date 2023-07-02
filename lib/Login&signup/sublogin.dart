@@ -7,6 +7,7 @@ import 'package:trn_project_2/Elements/mytextfield.dart';
 import 'package:trn_project_2/Login&signup/facebook_image.dart';
 import 'package:trn_project_2/Login&signup/github_image.dart';
 import 'package:trn_project_2/Login&signup/google_image.dart';
+import 'package:trn_project_2/Login&signup/mybutton.dart';
 
 class Sublogin extends StatefulWidget {
   Sublogin({Key? key}) : super(key: key);
@@ -29,14 +30,27 @@ class _SubloginState extends State<Sublogin> {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailcontroller.text, password: passcontroller.text);
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('user-not-found');
-      } else if (e.code == 'wrong-password') {
-        print('wrong Password');
-      }
+      Navigator.pop(context);
+      showerrorMessage(e.code);
     }
-    Navigator.pop(context);
+  }
+
+  void showerrorMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.deepPurple,
+            title: Center(
+              child: Text(
+                message,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        });
   }
 
   @override
@@ -71,23 +85,7 @@ class _SubloginState extends State<Sublogin> {
           SizedBox(
             height: 10,
           ),
-          GestureDetector(
-            onTap: signuserin,
-            child: Container(
-                height: 54,
-                width: 293,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18.00),
-                  color: Color(0xff275EEA),
-                ),
-                child: Center(
-                  child: Text('Login',
-                      style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.white)),
-                )),
-          ),
+          MyButton(ontapfunction: signuserin, mytext: 'Login'),
           SizedBox(
             height: 50,
           ),
