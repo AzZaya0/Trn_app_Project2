@@ -17,7 +17,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late PageController _pageController;
   int currentpage = 0;
-  int myindex = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -34,8 +33,9 @@ class _LoginPageState extends State<LoginPage> {
         duration: Duration(milliseconds: 400), curve: Curves.easeIn);
 
     setState(() {
-      newcolor1 =
-          (newcolor2 == Colors.white) ? Colors.white : Color(0xffFEEEEE);
+      newcolor1 = (newcolor2 == Colors.white && newcolor2 == Color(0xffFEEEEE))
+          ? Colors.white
+          : Color(0xffFEEEEE);
       newcolor2 = Colors.white;
     });
   }
@@ -45,8 +45,9 @@ class _LoginPageState extends State<LoginPage> {
         duration: Duration(milliseconds: 400), curve: Curves.easeIn);
     // newcolor = (newcolor == Colors.white) ? Colors.pink : Colors.white;
     setState(() {
-      newcolor2 =
-          (newcolor1 == Colors.white) ? Colors.white : Color(0xffFEEEEE);
+      newcolor2 = (newcolor1 == Colors.white && newcolor1 == Color(0xffFEEEEE))
+          ? Colors.white
+          : Color(0xffFEEEEE);
       newcolor1 = Colors.white;
     });
   }
