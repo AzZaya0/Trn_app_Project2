@@ -3,6 +3,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:trn_project_2/Elements/mytextfield.dart';
+import 'package:trn_project_2/Login&signup/facebook_image.dart';
+import 'package:trn_project_2/Login&signup/github_image.dart';
+import 'package:trn_project_2/Login&signup/google_image.dart';
 import 'package:trn_project_2/Login&signup/mybutton.dart';
 
 class Subsignup extends StatefulWidget {
@@ -81,7 +84,20 @@ class _SubsignupState extends State<Subsignup> {
           SizedBox(
             height: 20,
           ),
-          MyButton(ontapfunction: userRegister, mytext: 'Sign In')
+          MyButton(ontapfunction: userRegister, mytext: 'Sign In'),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Google_imageLog(),
+                Facebook_imageLog(),
+                Github_imageLog()
+              ],
+            ),
+          )
         ],
       ),
     );

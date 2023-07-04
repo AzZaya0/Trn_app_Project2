@@ -11,7 +11,9 @@ class GoogleAuthX {
     try {
       var result1 = await _googleSignIn.signIn();
 
-      if (result1 == null) {}
+      if (result1 == null) {
+        return;
+      }
 
       final userdata = await result1!.authentication;
       final Credential = GoogleAuthProvider.credential(
