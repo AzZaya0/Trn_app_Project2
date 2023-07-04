@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_cast, use_build_context_synchronously, non_constant_identifier_names, prefer_const_constructors_in_immutables, avoid_unnecessary_containers
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class _SubsignupState extends State<Subsignup> {
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: emailcontroller.text, password: Confirmpasscontroller.text);
-        Navigator.pop(context as BuildContext);
+        Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
         Navigator.pop(context as BuildContext);
         showerrorMessage(e.code);
