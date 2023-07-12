@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, use_build_context_synchronously, sized_box_for_whitespace, avoid_unnecessary_containers
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:trn_project_2/Elements/mytextfield.dart';
@@ -27,8 +28,14 @@ class _SubloginState extends State<Sublogin> {
       },
     );
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailcontroller.text, password: passcontroller.text);
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: emailcontroller.text, password: passcontroller.text);
+      FirebaseFirestore.instance
+          .collection('user')
+          .doc(userCredential.user!.uid)
+          .set({'uid': userCredential.user!.uid, 'email': emailcontroller.text},
+              SetOptions(merge: true));
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
@@ -93,8 +100,8 @@ class _SubloginState extends State<Sublogin> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Google_imageLog(),
-                Facebook_imageLog(),
-                Github_imageLog()
+                //      Facebook_imageLog(),
+                //      Github_imageLog()
               ],
             ),
           )
