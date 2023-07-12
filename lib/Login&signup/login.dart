@@ -25,11 +25,6 @@ class _LoginPageState extends State<LoginPage> {
     _pageController =
         PageController(initialPage: currentpage, viewportFraction: 0.99);
 
-    // if (currentpage == 0) {
-    //   newcolor1 = Colors.pink;
-    // } else if (currentpage == 1) {
-    //   newcolor2 = Colors.pink;
-    // }
     _pageController.addListener(() {
       setState(() {
         currentpage = _pageController.page!.toInt();
