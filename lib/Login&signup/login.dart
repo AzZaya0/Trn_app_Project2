@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:trn_project_2/Elements/FrameGrad.dart';
@@ -23,6 +24,27 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     _pageController =
         PageController(initialPage: currentpage, viewportFraction: 0.99);
+
+    // if (currentpage == 0) {
+    //   newcolor1 = Colors.pink;
+    // } else if (currentpage == 1) {
+    //   newcolor2 = Colors.pink;
+    // }
+    _pageController.addListener(() {
+      setState(() {
+        currentpage = _pageController.page!.toInt();
+
+        if (currentpage == 0) {
+          newcolor1 = Color(0xffFEEEEE);
+          ;
+          newcolor2 = Colors.white;
+        } else if (currentpage == 1) {
+          newcolor2 = Color(0xffFEEEEE);
+
+          newcolor1 = Colors.white;
+        }
+      });
+    });
   }
 
   late Color newcolor1 = Color(0xffFEEEEE);
@@ -32,24 +54,24 @@ class _LoginPageState extends State<LoginPage> {
     _pageController.previousPage(
         duration: Duration(milliseconds: 400), curve: Curves.easeIn);
 
-    setState(() {
-      newcolor1 = (newcolor2 == Colors.white && newcolor2 == Color(0xffFEEEEE))
-          ? Colors.white
-          : Color(0xffFEEEEE);
-      newcolor2 = Colors.white;
-    });
+    // setState(() {
+    //   newcolor1 = (newcolor2 == Colors.white && newcolor2 == Color(0xffFEEEEE))
+    //       ? Colors.white
+    //       : Color(0xffFEEEEE);
+    //   newcolor2 = Colors.white;
+    // });
   }
 
   void page1() {
     _pageController.nextPage(
         duration: Duration(milliseconds: 400), curve: Curves.easeIn);
-    // newcolor = (newcolor == Colors.white) ? Colors.pink : Colors.white;
-    setState(() {
-      newcolor2 = (newcolor1 == Colors.white && newcolor1 == Color(0xffFEEEEE))
-          ? Colors.white
-          : Color(0xffFEEEEE);
-      newcolor1 = Colors.white;
-    });
+    // // newcolor = (newcolor == Colors.white) ? Colors.pink : Colors.white;
+    // setState(() {
+    //   newcolor2 = (newcolor1 == Colors.white && newcolor1 == Color(0xffFEEEEE))
+    //       ? Colors.white
+    //       : Color(0xffFEEEEE);
+    //   newcolor1 = Colors.white;
+    // });
   }
 
   @override
