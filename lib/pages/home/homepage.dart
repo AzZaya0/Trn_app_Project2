@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 padding: EdgeInsets.all(20),
                 child: Text(
-                  'Hello ' + user.email!,
+                  'Hello ',
                   style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
                 color: Colors.pink,

@@ -7,11 +7,13 @@ class MyTextField extends StatelessWidget {
   String hintText;
   bool obscureText;
   final TextEditingController usercontroller;
+  final TextInputType? keyboardtype;
   MyTextField(
       {Key? key,
       required this.hintText,
       required this.obscureText,
-      required this.usercontroller})
+      required this.usercontroller,
+      this.keyboardtype})
       : super(key: key);
 
   @override
@@ -22,6 +24,7 @@ class MyTextField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: TextField(
+            keyboardType: keyboardtype,
             controller: usercontroller,
             obscureText: obscureText,
             decoration: InputDecoration(

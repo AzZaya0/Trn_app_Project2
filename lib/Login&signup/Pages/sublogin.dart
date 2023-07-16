@@ -83,7 +83,7 @@ class _SubloginState extends State<Sublogin> {
                 children: [
                   SizedBox(
                     height: 0,
-                    width: 170,
+                    width: 150,
                   ),
                   Text('Forgot Password ?')
                 ],

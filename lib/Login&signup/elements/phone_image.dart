@@ -1,8 +1,8 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:trn_project_2/Login&signup/Pages/phoneLogin.dart';
-import 'package:trn_project_2/Login&signup/services/auth_service.dart';
 
 class Phone_imageLog extends StatelessWidget {
   const Phone_imageLog({super.key});
@@ -12,7 +12,11 @@ class Phone_imageLog extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PhoneLogin()));
+            context,
+            PageTransition(
+                child: PhoneLogin(),
+                type: PageTransitionType.fade,
+                duration: Duration(milliseconds: 300)));
       },
       child: Container(
           margin: EdgeInsets.all(10),

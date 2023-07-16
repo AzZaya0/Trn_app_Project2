@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void page0() {
     _pageController.previousPage(
-        duration: Duration(milliseconds: 400), curve: Curves.easeIn);
+        duration: Duration(milliseconds: 200), curve: Curves.linear);
 
     // setState(() {
     //   newcolor1 = (newcolor2 == Colors.white && newcolor2 == Color(0xffFEEEEE))
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void page1() {
     _pageController.nextPage(
-        duration: Duration(milliseconds: 400), curve: Curves.easeIn);
+        duration: Duration(milliseconds: 200), curve: Curves.linear);
     // // newcolor = (newcolor == Colors.white) ? Colors.pink : Colors.white;
     // setState(() {
     //   newcolor2 = (newcolor1 == Colors.white && newcolor1 == Color(0xffFEEEEE))

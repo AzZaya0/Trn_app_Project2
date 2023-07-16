@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trn_project_2/Elements/FrameGrad.dart';
 import 'package:trn_project_2/Login&signup/Pages/otppage.dart';
+import 'package:trn_project_2/Login&signup/Pages/phoneLogin.dart';
 import 'package:trn_project_2/Login&signup/elements/myBackButtonL.dart';
 import 'package:trn_project_2/Login&signup/elements/mytextfieldL.dart';
 import 'package:trn_project_2/Login&signup/elements/mybuttonL.dart';
+import 'package:trn_project_2/pages/home/auth_page.dart';
 
 class OTPpage extends StatefulWidget {
   const OTPpage({super.key});
@@ -15,6 +18,47 @@ class OTPpage extends StatefulWidget {
 
 class _OTPpageState extends State<OTPpage> {
   final numbercontroller = TextEditingController();
+
+  void OTP_verify() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(child: CircularProgressIndicator());
+      },
+    );
+    try {
+      PhoneAuthCredential creds = PhoneAuthProvider.credential(
+          verificationId: PhoneLogin.verify, smsCode: numbercontroller.text);
+      User? user =
+          (await FirebaseAuth.instance.signInWithCredential(creds)).user!;
+      if (user != null) {}
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => AuthPage()));
+    } on FirebaseException catch (e) {
+      Navigator.pop(context);
+      showerrorMessage(e.code);
+    }
+  }
+
+  void showerrorMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.deepPurple,
+            title: Center(
+              child: Text(
+                message,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,13 +133,7 @@ class _OTPpageState extends State<OTPpage> {
                                 ),
                                 Center(
                                   child: MyButton(
-                                      ontapfunction: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const OTPpage()));
-                                      },
+                                      ontapfunction: OTP_verify,
                                       mytext: 'Request OTP'),
                                 ),
                                 SizedBox(
