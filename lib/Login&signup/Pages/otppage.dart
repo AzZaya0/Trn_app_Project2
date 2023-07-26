@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trn_project_2/Elements/FrameGrad.dart';
+import 'package:trn_project_2/Login&signup/Pages/login.dart';
 import 'package:trn_project_2/Login&signup/Pages/otppage.dart';
 import 'package:trn_project_2/Login&signup/Pages/phoneLogin.dart';
 import 'package:trn_project_2/Login&signup/elements/myBackButtonL.dart';
@@ -36,7 +37,7 @@ class _OTPpageState extends State<OTPpage> {
       Navigator.pop(context);
       Navigator.pop(context);
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => AuthPage()));
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
     } on FirebaseException catch (e) {
       Navigator.pop(context);
       showerrorMessage(e.code);

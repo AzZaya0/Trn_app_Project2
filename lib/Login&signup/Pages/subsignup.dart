@@ -103,6 +103,7 @@ class _SubsignupState extends State<Subsignup> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Google_imageLog(),
+                Phone_imageLog(),
                 //         Facebook_imageLog(),
                 //        Github_imageLog()
               ],
