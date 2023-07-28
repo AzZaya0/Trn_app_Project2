@@ -1,44 +1,56 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:trn_project_2/Elements/FrameGrad.dart';
-import 'package:trn_project_2/Login&signup/Pages/login.dart';
-import 'package:trn_project_2/Login&signup/Pages/otppage.dart';
-import 'package:trn_project_2/Login&signup/Pages/phoneLogin.dart';
-import 'package:trn_project_2/Login&signup/elements/myBackButtonL.dart';
-import 'package:trn_project_2/Login&signup/elements/mytextfieldL.dart';
-import 'package:trn_project_2/Login&signup/elements/mybuttonL.dart';
-import 'package:trn_project_2/pages/home/auth_page.dart';
+import 'package:trn_project_2/pages/Login&signup/Pages/otppage.dart';
+import 'package:trn_project_2/pages/Login&signup/elements/myBackButtonL.dart';
+import 'package:trn_project_2/pages/Login&signup/elements/mytextfieldL.dart';
+import 'package:trn_project_2/pages/Login&signup/elements/mybuttonL.dart';
 
-class OTPpage extends StatefulWidget {
-  const OTPpage({super.key});
+class PhoneLogin extends StatefulWidget {
+  const PhoneLogin({super.key});
+  static String verify = "";
 
   @override
-  State<OTPpage> createState() => _OTPpageState();
+  State<PhoneLogin> createState() => _PhoneLoginState();
 }
 
-class _OTPpageState extends State<OTPpage> {
+class _PhoneLoginState extends State<PhoneLogin> {
   final numbercontroller = TextEditingController();
 
-  void OTP_verify() async {
+  void _sendOTP() async {
     showDialog(
       context: context,
       builder: (context) {
         return Center(child: CircularProgressIndicator());
       },
     );
+
     try {
-      PhoneAuthCredential creds = PhoneAuthProvider.credential(
-          verificationId: PhoneLogin.verify, smsCode: numbercontroller.text);
-      User? user =
-          (await FirebaseAuth.instance.signInWithCredential(creds)).user!;
-      if (user != null) {}
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginPage()));
-    } on FirebaseException catch (e) {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: "+977${numbercontroller.text}",
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await FirebaseAuth.instance.signInWithCredential(credential);
+          Navigator.pop(context);
+        },
+        verificationFailed: (e) {
+          Navigator.pop(context);
+          showerrorMessage("Try Again");
+        },
+        codeSent: ((verificationId, forceResendingToken) {
+          PhoneLogin.verify = verificationId;
+
+          Navigator.push(
+              context,
+              PageTransition(
+                  child: OTPpage(),
+                  type: PageTransitionType.fade,
+                  duration: Duration(milliseconds: 200)));
+        }),
+        codeAutoRetrievalTimeout: (verificationId) {},
+      );
+    } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       showerrorMessage(e.code);
     }
@@ -91,17 +103,17 @@ class _OTPpageState extends State<OTPpage> {
                                   child: Container(
                                     height: Constraints.maxHeight * 0.25,
                                     width: Constraints.maxWidth * 0.83,
-                                    child: Image.network(
-                                        'https://img.freepik.com/free-photo/3d-hand-using-online-banking-app-smartphone_107791-16639.jpg?w=826&t=st=1689319591~exp=1689320191~hmac=9a82070caad5ee8a66963cdd6d4884c9147427188a42c25db25ecc1e5a6c41df'),
+                                    // child: Image.network(
+                                    //     'https://img.freepik.com/free-photo/bank-card-mobile-phone-online-payment_107791-16646.jpg?w=826&t=st=1689314634~exp=1689315234~hmac=cc98dd92157d8118db1b7408f65785f093578d567fe22d898de588ea6b2d341e'),
 
-                                    // child: Image.asset(
-                                    //     'lib/assects/phoneVerification.jpg'),
+                                    child: Image.asset(
+                                        'lib/assects/phoneVerification.jpg'),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 25),
                                   child: Text(
-                                    'Enter OTP',
+                                    'Create Account',
                                     style: GoogleFonts.inter(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w600,
@@ -112,7 +124,7 @@ class _OTPpageState extends State<OTPpage> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 25),
                                   child: Text(
-                                    'Enter 4 digit OTP from the device with \nthe number which you had provided.',
+                                    'You will receive 4 digit  OTP \non your device',
                                     style: GoogleFonts.inter(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
@@ -125,8 +137,9 @@ class _OTPpageState extends State<OTPpage> {
                                 ),
                                 Center(
                                   child: MyTextField(
-                                      hintText: 'Enter OTP',
+                                      hintText: 'Phone Number',
                                       obscureText: false,
+                                      keyboardtype: TextInputType.number,
                                       usercontroller: numbercontroller),
                                 ),
                                 SizedBox(
@@ -134,7 +147,9 @@ class _OTPpageState extends State<OTPpage> {
                                 ),
                                 Center(
                                   child: MyButton(
-                                      ontapfunction: OTP_verify,
+                                      ontapfunction: () {
+                                        _sendOTP();
+                                      },
                                       mytext: 'Request OTP'),
                                 ),
                                 SizedBox(

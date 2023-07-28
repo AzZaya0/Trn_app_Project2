@@ -4,9 +4,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:trn_project_2/Elements/FrameGrad.dart';
-import 'package:trn_project_2/Login&signup/elements/Login&signup_Switch.dart';
-import 'package:trn_project_2/Login&signup/Pages/sublogin.dart';
-import 'package:trn_project_2/Login&signup/Pages/subsignup.dart';
+import 'package:trn_project_2/pages/Login&signup/elements/Login&signup_Switch.dart';
+import 'package:trn_project_2/pages/Login&signup/Pages/sublogin.dart';
+import 'package:trn_project_2/pages/Login&signup/Pages/subsignup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

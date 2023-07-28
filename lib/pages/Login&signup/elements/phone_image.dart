@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:trn_project_2/Login&signup/Pages/phoneLogin.dart';
+import 'package:trn_project_2/pages/Login&signup/Pages/phoneLogin.dart';
 
 class Phone_imageLog extends StatelessWidget {
   const Phone_imageLog({super.key});

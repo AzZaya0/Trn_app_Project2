@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trn_project_2/Login&signup/onboarding/onboardingscreen.dart';
+import 'package:trn_project_2/pages/Login&signup/onboarding/onboardingscreen.dart';
 import 'package:trn_project_2/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:trn_project_2/pages/home/auth_page.dart';
+import 'package:trn_project_2/auth_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 

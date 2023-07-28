@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:trn_project_2/Login&signup/services/auth_service.dart';
+import 'package:trn_project_2/pages/Login&signup/services/auth_service.dart';
 
 class Google_imageLog extends StatelessWidget {
   const Google_imageLog({super.key});

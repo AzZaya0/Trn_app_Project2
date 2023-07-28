@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:trn_project_2/Elements/FrameGrad.dart';
+import 'package:trn_project_2/pages/home/Pages/profilePage.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +18,12 @@ class _HomePageState extends State<HomePage> {
   void signOut() async {
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
+  }
+
+  void profile() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return ProfilePage();
+    }));
   }
 
   final user = FirebaseAuth.instance.currentUser!;
@@ -48,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Image.asset(
                                           'lib/assects/trn logo.png')),
                                   GestureDetector(
-                                    onTap: signOut,
+                                    onTap: profile,
                                     child: Container(
                                         height: 60,
                                         width: 60,
@@ -140,12 +148,20 @@ class _HomePageState extends State<HomePage> {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 5),
                           child: Container(
-                            decoration: BoxDecoration(
-                                color: Color(0xffD2D2D2),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(45),
-                                    topRight: Radius.circular(45))),
-                          ),
+                              width: Constraints.maxWidth,
+                              decoration: BoxDecoration(
+                                  color: Color(0xffD2D2D2),
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(45),
+                                      topRight: Radius.circular(45))),
+                              child: Container(
+                                child: IconButton(
+                                    iconSize: 40,
+                                    onPressed: signOut,
+                                    icon: Icon(Icons.logout)),
+                                height: 100,
+                                width: 100,
+                              )),
                         ),
                       ),
                     ],

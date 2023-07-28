@@ -3,11 +3,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:trn_project_2/Login&signup/elements/mytextfieldL.dart';
-import 'package:trn_project_2/Login&signup/elements/facebook_image.dart';
-import 'package:trn_project_2/Login&signup/elements/phone_image.dart';
-import 'package:trn_project_2/Login&signup/elements/google_image.dart';
-import 'package:trn_project_2/Login&signup/elements/mybuttonL.dart';
+import 'package:trn_project_2/pages/Login&signup/elements/mytextfieldL.dart';
+import 'package:trn_project_2/pages/Login&signup/elements/facebook_image.dart';
+import 'package:trn_project_2/pages/Login&signup/elements/phone_image.dart';
+import 'package:trn_project_2/pages/Login&signup/elements/google_image.dart';
+import 'package:trn_project_2/pages/Login&signup/elements/mybuttonL.dart';
 
 class Sublogin extends StatefulWidget {
   Sublogin({Key? key}) : super(key: key);
