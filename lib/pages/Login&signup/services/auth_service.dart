@@ -14,11 +14,12 @@ class GoogleAuthX {
       if (result1 == null) {
         return;
       }
-
       final userdata = await result1!.authentication;
       final _Credential = GoogleAuthProvider.credential(
           accessToken: userdata.accessToken, idToken: userdata.idToken);
       var finalresult = FirebaseAuth.instance.signInWithCredential(_Credential);
+
+      //firestore database
       FirebaseFirestore.instance.collection('user').doc(result1.id).set({
         'uid': result1.id,
         'email': result1.email,

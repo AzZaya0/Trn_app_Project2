@@ -6,19 +6,23 @@ class MyTextFormField extends StatelessWidget {
   bool obscureText;
   final TextEditingController usercontroller;
   bool? enabled;
-  MyTextFormField({
-    Key? key,
-    required this.hintText,
-    required this.obscureText,
-    required this.usercontroller,
-    required this.enabled,
-  }) : super(key: key);
+  TextInputType? keyboardtype;
+
+  MyTextFormField(
+      {Key? key,
+      required this.hintText,
+      required this.obscureText,
+      required this.usercontroller,
+      required this.enabled,
+      this.keyboardtype})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
         controller: usercontroller,
         obscureText: obscureText,
+        keyboardType: keyboardtype,
         enabled: enabled,
         decoration: InputDecoration(
             labelText: hintText,

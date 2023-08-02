@@ -31,11 +31,7 @@ class _SubloginState extends State<Sublogin> {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: emailcontroller.text, password: passcontroller.text);
-      FirebaseFirestore.instance
-          .collection('user')
-          .doc(userCredential.user!.uid)
-          .set({'uid': userCredential.user!.uid, 'email': emailcontroller.text},
-              SetOptions(merge: true));
+
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);

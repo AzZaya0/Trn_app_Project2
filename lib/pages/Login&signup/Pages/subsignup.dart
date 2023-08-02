@@ -36,14 +36,19 @@ class _SubsignupState extends State<Subsignup> {
             .createUserWithEmailAndPassword(
                 email: emailcontroller.text,
                 password: Confirmpasscontroller.text);
-        Navigator.pop(context);
+
+        //Firestore database
         FirebaseFirestore.instance
             .collection('user')
-            .doc(userCredential.user!.uid)
+            .doc(userCredential.user!.email)
             .set({
+          'username': emailcontroller.text.split('@')[0],
           'uid': userCredential.user!.uid,
-          'email': emailcontroller.text
+          'email': emailcontroller.text,
+          'bio': 'Emepty bio...',
+          'phonenumber': 'add number'
         }, SetOptions(merge: true));
+        Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
         Navigator.pop(context as BuildContext);
         showerrorMessage(e.code);

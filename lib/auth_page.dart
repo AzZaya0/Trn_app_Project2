@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:trn_project_2/pages/Login&signup/Pages/login.dart';
 import 'package:trn_project_2/pages/home/Pages/homepage.dart';
 
+import 'pages/home/Elements/navigation.dart';
+
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
@@ -15,7 +17,7 @@ class AuthPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return HomePage();
+            return MyNavigationBar();
           } else {
             return LoginPage();
           }

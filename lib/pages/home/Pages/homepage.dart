@@ -2,10 +2,11 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:trn_project_2/Elements/FrameGrad.dart';
+import 'package:trn_project_2/pages/home/Elements/navigation.dart';
 import 'package:trn_project_2/pages/home/Pages/profilePage.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -144,26 +145,34 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(20)),
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Container(
-                              width: Constraints.maxWidth,
-                              decoration: BoxDecoration(
-                                  color: Color(0xffD2D2D2),
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(45),
-                                      topRight: Radius.circular(45))),
-                              child: Container(
-                                child: IconButton(
-                                    iconSize: 40,
-                                    onPressed: signOut,
-                                    icon: Icon(Icons.logout)),
-                                height: 100,
-                                width: 100,
-                              )),
-                        ),
-                      ),
+
+                      // Center(
+                      //   child: MyNavigaitonBar(
+                      //     height: Constraints.maxHeight * 0.12,
+                      //     width: Constraints.maxWidth * 0.95,
+                      //   ),
+                      // )
+
+                      // Expanded(
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.only(top: 5),
+                      //     child: Container(
+                      //         width: Constraints.maxWidth,
+                      //         decoration: BoxDecoration(
+                      //             color: Color(0xffD2D2D2),
+                      //             borderRadius: BorderRadius.only(
+                      //                 topLeft: Radius.circular(45),
+                      //                 topRight: Radius.circular(45))),
+                      //         child: Container(
+                      //           child: IconButton(
+                      //               iconSize: 40,
+                      //               onPressed: signOut,
+                      //               icon: Icon(Icons.settings)),
+                      //           height: 100,
+                      //           width: 100,
+                      //         )),
+                      //   ),
+                      // ),
                     ],
                   )))),
     ));
