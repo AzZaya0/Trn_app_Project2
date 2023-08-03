@@ -8,20 +8,21 @@ class MyTiles extends StatelessWidget {
   String? preImage;
   String? texts;
   String? sufImaage;
-
-  MyTiles({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.preImage,
-    required this.texts,
-    required this.sufImaage,
-  }) : super(key: key);
+  Function()? ontap;
+  MyTiles(
+      {Key? key,
+      required this.height,
+      required this.width,
+      required this.preImage,
+      required this.texts,
+      required this.sufImaage,
+      required this.ontap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: ontap,
       child: Container(
         height: height,
         width: width,
